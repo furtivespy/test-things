@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>UK Theme Parks</title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.getJSON('https://api.sheety.co/77b0ff9a-fb50-4310-a7f7-1117499a0da7', function(data) {
+		var template = Handlebars.compile($('#item-template').html())
+		$('#items').html(template(data))
+	})
+})
+</script>
+<script id="item-template" type="text/x-handlebars-template">
+    <div class="wrapper">
+            <div class="box header">System</div>
+            <div class="box header">Dev</div>
+            <div class="box header">QA</div>
+            <div class="box header">Prod</div>
+            <div class="box header">Notes</div>
+            <div class="box header">Help Channel</div>       
+	{{#each this}}
+		<div class="box">{{system}}</div>
+		<div class="box centered"><img src="/img/{{devStatus}}.png" alt="{{devStatus}}" /></div>
+		<div class="box centered"><img src="/img/{{qaStatus}}.png" alt="{{qaStatus}}" /></div>
+		<div class="box centered"><img src="/img/{{prodStatus}}.png" alt="{{prodStatus}}" /></div>
+		<div class="box">{{notes}}</div>
+		<div class="box">#{{helpRoom}}</div>
+	{{/each}}
+    </div>
+</script>
+<style>
+    body {
+    margin: 40px;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: 200px 100px 100px 100px 300px 100px;
+        grid-gap: 10px;
+        background-color: #fff;
+        color: #444;
+    }
+
+    .box {
+        background-color: #444;
+        color: #fff;
+        border-radius: 5px;
+        padding: 5px 10px;
+    }
+
+    .centered {
+        justify-content: center
+    }
+
+    .header {
+        font-size: 150%;
+        font-weight: bold
+    }
+</style>
+</head>
+<body>
+<div id="items">Loading Status Grid...</div>
+</body>
+</html>
