@@ -21,11 +21,11 @@ $(document).ready(function(){
             <div class="box header">Help Channel</div>       
 	{{#each this}}
 		<div class="box">{{system}}</div>
-		<div class="box centered"><img src="/img/{{devStatus}}.png" alt="{{devStatus}}" /></div>
-		<div class="box centered"><img src="/img/{{qaStatus}}.png" alt="{{qaStatus}}" /></div>
-		<div class="box centered"><img src="/img/{{prodStatus}}.png" alt="{{prodStatus}}" /></div>
+		<div class="box centered"><img class="iconsize" src="img/{{devStatus}}.png" title="{{devStatus}}" /></div>
+		<div class="box centered"><img class="iconsize" src="img/{{qaStatus}}.png" title="{{qaStatus}}" /></div>
+		<div class="box centered"><img class="iconsize" src="img/{{prodStatus}}.png" title="{{prodStatus}}" /></div>
 		<div class="box">{{notes}}</div>
-		<div class="box">#{{helpRoom}}</div>
+		<div class="box">{{#if helpRoom}}#{{helpRoom}}{{/if}}</div>
 	{{/each}}
     </div>
 </script>
@@ -36,7 +36,7 @@ $(document).ready(function(){
 
     .wrapper {
         display: grid;
-        grid-template-columns: 200px 100px 100px 100px 300px 100px;
+        grid-template-columns: 150px 75px 75px 75px 300px 200px;
         grid-gap: 10px;
         background-color: #fff;
         color: #444;
@@ -50,12 +50,20 @@ $(document).ready(function(){
     }
 
     .centered {
-        justify-content: center
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .header {
         font-size: 150%;
-        font-weight: bold
+        font-weight: bold;
+        background-color: #455;
+    }
+
+    .iconsize {
+        width: 20px;
+        height: 20px;
     }
 </style>
 </head>
